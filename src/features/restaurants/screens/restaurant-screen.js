@@ -24,10 +24,9 @@ const ActivityView = styled.View`
 `;
 
 export const RestaurantScreen = ({ navigation }) => {
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
   const { favourites } = useContext(FavouritesContext);
 
-  console.log(`Loading: ${isLoading}\nError: ${error}`);
   const [isToggled, setIsToggled] = useState(false);
   return (
     <SafeArea>
