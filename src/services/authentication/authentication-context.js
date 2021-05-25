@@ -15,7 +15,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.toString().slice(6)); //sliced "Error: "
         setIsLoading(false);
       });
   };
@@ -23,6 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   return (
     <AuthenticationContext.Provider
       value={{
+        isAuthenticated: !!user,
         user,
         isLoading,
         error,
