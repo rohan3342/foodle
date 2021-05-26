@@ -21,7 +21,7 @@ export const AccountScreen = ({ navigation }) => {
           autoPlay
           loop
           resizeMode="contain"
-          source={require("../../../../assets/dancing-burger.json")}
+          source={require("../../../../assets/animations/dancing-burger.json")}
         />
       </AnimationWrapper>
       <Text variant="heading">Foodle</Text>
