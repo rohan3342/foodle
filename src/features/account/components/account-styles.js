@@ -4,7 +4,7 @@ import { Button, TextInput } from "react-native-paper";
 import { colors } from "../../../framework/theme/colors";
 
 export const AccountBackground = styled.ImageBackground.attrs({
-  source: require("../../../../assets/images/background-4.jpg"), //hard-coded props
+  source: require("../../../../assets/images/background-3.jpg"), //hard-coded props
 })`
   flex: 1;
   background-color: #ddd;
