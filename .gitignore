@@ -13,3 +13,5 @@ web-build/
 .DS_Store
 
 package-lock.json
+*/package-lock.json
+*/node_modules/**/*
