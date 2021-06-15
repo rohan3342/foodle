@@ -40,7 +40,7 @@ export const SettingsScreen = ({ navigation }) => {
       <AvatarContainer>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
           {!photo ? (
-            <Avatar.Icon size={140} backgroundColor="#2182BD" icon="human" />
+            <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
           ) : (
             <Avatar.Image
               size={140}
@@ -55,15 +55,29 @@ export const SettingsScreen = ({ navigation }) => {
       </AvatarContainer>
       <List.Section>
         <SettingsItem
+          title="Profile"
+          description="View your profile"
+          left={(props) => (
+            <List.Icon {...props} icon="account-circle" color="tomato" />
+          )}
+          onPress={() => navigation.navigate("Profile")}
+        />
+        <SettingsItem
           title="Favourites"
           description="View your favourites"
-          left={(props) => <List.Icon {...props} icon="heart" color="black" />}
+          left={(props) => <List.Icon {...props} icon="heart" color="tomato" />}
           onPress={() => navigation.navigate("Favourites")}
+        />
+        <SettingsItem
+          title="Manage Address"
+          description="Mange your address"
+          left={(props) => <List.Icon {...props} icon="home" color="tomato" />}
+          onPress={() => navigation.navigate("ManageAddress")}
         />
         <SettingsItem
           title="Logout"
           description="View your favourites"
-          left={(props) => <List.Icon {...props} icon="door" color="black" />}
+          left={(props) => <List.Icon {...props} icon="door" color="tomato" />}
           onPress={onLogout}
         />
       </List.Section>

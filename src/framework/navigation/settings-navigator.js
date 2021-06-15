@@ -7,6 +7,8 @@ import {
 import { SettingsScreen } from "../../features/settings/screens/settings-screen";
 import { FavouritesScreen } from "../../features/settings/screens/favourites-screen";
 import { CameraScreen } from "../../features/settings/screens/camera-screen";
+import { ProfileScreen } from "../../features/settings/screens/profile-screen";
+import { ManageAddressScreen } from "../../features/settings/screens/manage-address-screen";
 
 const SettingsStack = createStackNavigator();
 
@@ -27,6 +29,11 @@ export const SettingsNavigator = ({ route, navigation }) => {
       />
       <SettingsStack.Screen name="Favourites" component={FavouritesScreen} />
       <SettingsStack.Screen name="Camera" component={CameraScreen} />
+      <SettingsStack.Screen name="Profile" component={ProfileScreen} />
+      <SettingsStack.Screen
+        name="ManageAddress"
+        component={ManageAddressScreen}
+      />
     </SettingsStack.Navigator>
   );
 };
