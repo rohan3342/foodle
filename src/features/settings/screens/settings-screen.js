@@ -1,5 +1,5 @@
 import React, { useState, useContext, useCallback } from "react";
-import { TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { List, Avatar } from "react-native-paper";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -38,7 +38,7 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <SafeArea>
       <AvatarContainer>
-        <TouchableOpacity>
+        <View>
           {!googleUser?.user?.photoUrl && !user ? (
             <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
           ) : (
@@ -48,10 +48,10 @@ export const SettingsScreen = ({ navigation }) => {
               backgroundColor="#2182BD"
             />
           )}
-        </TouchableOpacity>
+        </View>
         {googleUser?.user.name && (
           <Spacer position="top" size="large">
-            <Text variant="label">{googleUser.user.name}</Text>
+            <Text variant="label1">{googleUser.user.name}</Text>
           </Spacer>
         )}
         <Spacer position="top" size="large">
@@ -83,7 +83,6 @@ export const SettingsScreen = ({ navigation }) => {
         />
         <SettingsItem
           title="Logout"
-          description="View your favourites"
           left={(props) => <List.Icon {...props} icon="door" color="tomato" />}
           onPress={onLogout}
         />

@@ -32,6 +32,12 @@ const label = (theme) => `
   font-weight: ${theme.fontWeights.medium};
 `;
 
+const label1 = (theme) => `
+  font-family: ${theme.fonts.heading};
+  font-size: ${theme.fontSizes.title};
+  font-weight: ${theme.fontWeights.medium};
+`;
+
 const heading = (theme) => `
   font-family: ${theme.fonts.body};
   font-size: ${theme.fontSizes.h3};
@@ -44,6 +50,7 @@ const variants = {
   error,
   hint,
   label,
+  label1,
   heading,
 };
 

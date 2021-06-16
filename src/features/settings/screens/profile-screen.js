@@ -40,9 +40,9 @@ const IconWrapper = styled.TouchableOpacity`
 `;
 
 export const ProfileScreen = ({ navigation }) => {
-  const { user } = useContext(AuthenticationContext);
+  const { user, googleUser } = useContext(AuthenticationContext);
   const [photo, setPhoto] = useState(null);
-  const { displayName, email, photoURL, phoneNumber } = user;
+  const { name, email, photoUrl } = googleUser?.user;
   const getProfilePicture = async (currentUser) => {
     const photoURI = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
     setPhoto(photoURI);
@@ -51,7 +51,7 @@ export const ProfileScreen = ({ navigation }) => {
   /* useFocus triggers everytime the screen is back into focus */
   useFocusEffect(
     useCallback(() => {
-      getProfilePicture(user);
+      user && getProfilePicture(user);
     }, [user])
   );
 
@@ -64,12 +64,12 @@ export const ProfileScreen = ({ navigation }) => {
           </IconWrapper>
         </IconView>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-          {!photoURL || !photo ? (
+          {!googleUser && !user ? (
             <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
           ) : (
             <Avatar.Image
               size={140}
-              source={{ uri: photo ? photoURL : photo }}
+              source={{ uri: user ? photo : photoUrl }}
               backgroundColor="#2182BD"
             />
           )}
@@ -77,14 +77,14 @@ export const ProfileScreen = ({ navigation }) => {
       </AvatarContainer>
       <List.Section>
         <SettingsItem
-          title={displayName ? displayName : "Name"}
+          title={googleUser ? name : "Name"}
           left={(props) => (
             <List.Icon {...props} icon="rename-box" color="tomato" />
           )}
           onPress={() => null}
         />
         <SettingsItem
-          title={email ? email : "Update Email"}
+          title={googleUser ? email : user.email}
           left={(props) => <List.Icon {...props} icon="email" color="tomato" />}
           onPress={() => null}
         />
@@ -96,7 +96,7 @@ export const ProfileScreen = ({ navigation }) => {
           onPress={() => null}
         />
         <SettingsItem
-          title={phoneNumber ? phoneNumber : "Mobile Number"}
+          title="+91 9868010682"
           left={(props) => (
             <List.Icon {...props} icon="cellphone-android" color="tomato" />
           )}
