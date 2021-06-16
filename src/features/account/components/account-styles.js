@@ -3,9 +3,11 @@ import { Button, TextInput } from "react-native-paper";
 
 import { colors } from "../../../framework/theme/colors";
 
-export const AccountBackground = styled.ImageBackground.attrs({
-  source: require("../../../../assets/images/background-3.jpg"), //hard-coded props
-})`
+export const AccountBackground = styled.ImageBackground
+//   .attrs({
+//   source: require("../../../../assets/images/background-3.jpg"), //hard-coded props
+// })
+`
   flex: 1;
   background-color: #ddd;
   align-items: center;
@@ -40,7 +42,7 @@ export const ErrorContainer = styled.View`
   max-width: 300px;
   align-items: center;
   align-self: center;
-  margint-vertical: ${(props) => props.theme.space[2]};
+  margin-vertical: ${(props) => props.theme.space[2]};
 `;
 
 export const AnimationWrapper = styled.View`

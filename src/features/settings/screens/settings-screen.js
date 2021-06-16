@@ -20,9 +20,8 @@ const AvatarContainer = styled.View`
 `;
 
 export const SettingsScreen = ({ navigation }) => {
-  const { onLogout, user } = useContext(AuthenticationContext);
+  const { onLogout, user, googleUser } = useContext(AuthenticationContext);
   const [photo, setPhoto] = useState(null);
-  const { displayName, email, photoURL } = user;
 
   const getProfilePicture = async (currentUser) => {
     const photoURI = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
@@ -32,31 +31,33 @@ export const SettingsScreen = ({ navigation }) => {
   /* useFocus triggers everytime the screen is back into focus */
   useFocusEffect(
     useCallback(() => {
-      getProfilePicture(user);
+      user && getProfilePicture(user);
     }, [user])
   );
 
   return (
     <SafeArea>
       <AvatarContainer>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-          {!photoURL || !photo ? (
+        <TouchableOpacity>
+          {!googleUser?.user?.photoUrl && !user ? (
             <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
           ) : (
             <Avatar.Image
               size={140}
-              source={{ uri: photo ? photoURL : photo }}
+              source={{ uri: user ? photo : googleUser.user.photoUrl }}
               backgroundColor="#2182BD"
             />
           )}
         </TouchableOpacity>
-        {displayName && (
+        {googleUser?.user.name && (
           <Spacer position="top" size="large">
-            <Text variant="label">{displayName}</Text>
+            <Text variant="label">{googleUser.user.name}</Text>
           </Spacer>
         )}
         <Spacer position="top" size="large">
-          <Text variant="label">{email}</Text>
+          <Text variant="label">
+            {user ? user.email : googleUser.user.email}
+          </Text>
         </Spacer>
       </AvatarContainer>
       <List.Section>

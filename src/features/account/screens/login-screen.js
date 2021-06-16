@@ -14,7 +14,9 @@ import {
 } from "../components/account-styles";
 
 export const LoginScreen = ({ navigation }) => {
-  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading, googleSignIn } = useContext(
+    AuthenticationContext
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -53,6 +55,19 @@ export const LoginScreen = ({ navigation }) => {
               onPress={() => onLogin(email, password)}
             >
               Login
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={Colors.red100} />
+          )}
+        </Spacer>
+        <Spacer size="large">
+          {!isLoading ? (
+            <AuthButton
+              icon="google"
+              mode="contained"
+              onPress={() => googleSignIn()}
+            >
+              Google Sign-In
             </AuthButton>
           ) : (
             <ActivityIndicator animating={true} color={Colors.red100} />
