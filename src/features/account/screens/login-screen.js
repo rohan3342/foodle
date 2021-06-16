@@ -29,7 +29,6 @@ export const LoginScreen = ({ navigation }) => {
           value={email}
           textContentType="emailAddress"
           keyboardType="email-address"
-          autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
         />
         <Spacer size="large">
@@ -38,7 +37,6 @@ export const LoginScreen = ({ navigation }) => {
             value={password}
             textContentType="password"
             secureTextEntry
-            autoCapitalize="none"
             onChangeText={(text) => setPassword(text)}
           />
         </Spacer>

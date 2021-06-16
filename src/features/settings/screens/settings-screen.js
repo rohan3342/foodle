@@ -93,6 +93,13 @@ export const SettingsScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("ManageAddress")}
         />
         <SettingsItem
+          title="Manage Cards"
+          left={(props) => (
+            <List.Icon {...props} icon="credit-card-multiple" color="tomato" />
+          )}
+          onPress={() => null}
+        />
+        <SettingsItem
           title="Logout"
           left={(props) => <List.Icon {...props} icon="door" color="tomato" />}
           onPress={onLogout}

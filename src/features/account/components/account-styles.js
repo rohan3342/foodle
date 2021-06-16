@@ -3,11 +3,9 @@ import { Button, TextInput } from "react-native-paper";
 
 import { colors } from "../../../framework/theme/colors";
 
-export const AccountBackground = styled.ImageBackground
-//   .attrs({
-//   source: require("../../../../assets/images/background-3.jpg"), //hard-coded props
-// })
-`
+export const AccountBackground = styled.ImageBackground.attrs({
+  source: require("../../../../assets/images/background.jpg"), //hard-coded props
+})`
   flex: 1;
   background-color: #ddd;
   align-items: center;
@@ -29,12 +27,20 @@ export const Container = styled.View`
 `;
 
 export const AuthButton = styled(Button).attrs({
-  color: colors.brand.primary,
+  color: colors.brand.tomato,
+  labelStyle: {
+    color: colors.text.inverse,
+  },
 })`
   padding: ${(props) => props.theme.space[2]};
 `;
 
-export const AuthInput = styled(TextInput).attrs({})`
+export const AuthInput = styled(TextInput).attrs({
+  outlineColor: colors.brand.tomato,
+  mode: "outlined",
+  autoCapitalize: "none",
+  theme: { colors: { text: "#262626", primary: "#ff6347CC" } },
+})`
   width: 300px;
 `;
 
@@ -47,8 +53,9 @@ export const ErrorContainer = styled.View`
 
 export const AnimationWrapper = styled.View`
   width: 100%;
-  height: 35%;
+  height: 25%;
+  opacity: 0.8;
   position: absolute;
-  top: 30px;
+  top: 100px;
   padding: ${(props) => props.theme.space[2]};
 `;
