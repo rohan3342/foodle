@@ -22,6 +22,7 @@ const AvatarContainer = styled.View`
 export const SettingsScreen = ({ navigation }) => {
   const { onLogout, user } = useContext(AuthenticationContext);
   const [photo, setPhoto] = useState(null);
+  const { displayName, email, photoURL } = user;
 
   const getProfilePicture = async (currentUser) => {
     const photoURI = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
@@ -39,18 +40,23 @@ export const SettingsScreen = ({ navigation }) => {
     <SafeArea>
       <AvatarContainer>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-          {!photo ? (
+          {!photoURL || !photo ? (
             <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
           ) : (
             <Avatar.Image
               size={140}
-              source={{ uri: photo }}
+              source={{ uri: photo ? photoURL : photo }}
               backgroundColor="#2182BD"
             />
           )}
         </TouchableOpacity>
+        {displayName && (
+          <Spacer position="top" size="large">
+            <Text variant="label">{displayName}</Text>
+          </Spacer>
+        )}
         <Spacer position="top" size="large">
-          <Text variant="label">{user.email}</Text>
+          <Text variant="label">{email}</Text>
         </Spacer>
       </AvatarContainer>
       <List.Section>
