@@ -35,6 +35,7 @@ export const AppNavigator = () => {
           <Tab.Navigator
             screenOptions={createScreenOptions}
             tabBarOptions={{
+              style: { marginTop: 6 },
               activeTintColor: "tomato",
               inactiveTintColor: "gray",
               labelStyle: { fontSize: 12 },

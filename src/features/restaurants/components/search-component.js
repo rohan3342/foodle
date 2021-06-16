@@ -16,6 +16,7 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
     <SearchContainer>
       <Searchbar
         icon={isFavouritesToggled ? "heart" : "heart-outline"}
+        iconColor={isFavouritesToggled ? "tomato" : "grey"}
         onIconPress={onFavouritesToggle}
         placeholder="Search for a location"
         value={searchKeyword}

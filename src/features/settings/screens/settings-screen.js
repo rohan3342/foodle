@@ -1,5 +1,4 @@
 import React, { useState, useContext, useCallback } from "react";
-import { View } from "react-native";
 import { List, Avatar } from "react-native-paper";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -35,20 +34,32 @@ export const SettingsScreen = ({ navigation }) => {
     }, [user])
   );
 
+  const ShowAvatar = () => {
+    if (!photo && !googleUser?.user?.photoUrl) {
+      return <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />;
+    } else if (googleUser?.user?.photoUrl) {
+      return (
+        <Avatar.Image
+          size={140}
+          source={{ uri: googleUser.user.photoUrl }}
+          backgroundColor="#2182BD"
+        />
+      );
+    } else {
+      return (
+        <Avatar.Image
+          size={140}
+          source={{ uri: photo }}
+          backgroundColor="#2182BD"
+        />
+      );
+    }
+  };
+
   return (
     <SafeArea>
       <AvatarContainer>
-        <View>
-          {!googleUser?.user?.photoUrl && !user ? (
-            <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
-          ) : (
-            <Avatar.Image
-              size={140}
-              source={{ uri: user ? photo : googleUser.user.photoUrl }}
-              backgroundColor="#2182BD"
-            />
-          )}
-        </View>
+        {ShowAvatar()}
         {googleUser?.user.name && (
           <Spacer position="top" size="large">
             <Text variant="label1">{googleUser.user.name}</Text>

@@ -83,7 +83,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const onLogout = () => {
-    if (!googleUser.type) {
+    if (!googleUser?.type) {
       setUser(undefined);
       firebase.auth().signOut();
       console.log("LOGOUT!!");

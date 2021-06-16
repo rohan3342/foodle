@@ -42,7 +42,6 @@ const IconWrapper = styled.TouchableOpacity`
 export const ProfileScreen = ({ navigation }) => {
   const { user, googleUser } = useContext(AuthenticationContext);
   const [photo, setPhoto] = useState(null);
-  const { name, email, photoUrl } = googleUser?.user;
   const getProfilePicture = async (currentUser) => {
     const photoURI = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
     setPhoto(photoURI);
@@ -55,6 +54,28 @@ export const ProfileScreen = ({ navigation }) => {
     }, [user])
   );
 
+  const ShowAvatar = () => {
+    if (!photo && !googleUser?.user?.photoUrl) {
+      return <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />;
+    } else if (googleUser?.user?.photoUrl) {
+      return (
+        <Avatar.Image
+          size={140}
+          source={{ uri: googleUser.user.photoUrl }}
+          backgroundColor="#2182BD"
+        />
+      );
+    } else {
+      return (
+        <Avatar.Image
+          size={140}
+          source={{ uri: photo }}
+          backgroundColor="#2182BD"
+        />
+      );
+    }
+  };
+
   return (
     <SafeArea>
       <AvatarContainer>
@@ -64,27 +85,19 @@ export const ProfileScreen = ({ navigation }) => {
           </IconWrapper>
         </IconView>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-          {!googleUser && !user ? (
-            <Avatar.Icon size={140} backgroundColor="tomato" icon="human" />
-          ) : (
-            <Avatar.Image
-              size={140}
-              source={{ uri: user ? photo : photoUrl }}
-              backgroundColor="#2182BD"
-            />
-          )}
+          {ShowAvatar()}
         </TouchableOpacity>
       </AvatarContainer>
       <List.Section>
         <SettingsItem
-          title={googleUser ? name : "Name"}
+          title={googleUser ? googleUser.user.name : "Name"}
           left={(props) => (
             <List.Icon {...props} icon="rename-box" color="tomato" />
           )}
           onPress={() => null}
         />
         <SettingsItem
-          title={googleUser ? email : user.email}
+          title={googleUser ? googleUser.user.email : user.email}
           left={(props) => <List.Icon {...props} icon="email" color="tomato" />}
           onPress={() => null}
         />
